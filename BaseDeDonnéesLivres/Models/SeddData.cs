@@ -33,7 +33,7 @@ namespace BaseDeDonnéesLivres.Models
                         titre = "Naruto Shippuden",
                         anneePublication = DateTime.Parse("1998-2-25"),
                         auteur = "Masashi Kishimoto",
-                        prix = 5.99M
+                       prix = 5.99M
                     },
 
                     new Livre
