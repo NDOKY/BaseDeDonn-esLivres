@@ -12,8 +12,8 @@ namespace BaseDeDonnéesLivres.Models
         public string titre { get; set; }
 
         [DataType(DataType.Date)]
-        public string auteur { get; set; }
         public DateTime anneePublication { get; set; }
+        public string auteur { get; set; }
         public decimal prix { get; set; }
     }
 }
