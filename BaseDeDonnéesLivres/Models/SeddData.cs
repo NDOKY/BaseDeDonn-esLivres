@@ -13,6 +13,19 @@ namespace BaseDeDonnéesLivres.Models
             using (var context = new BaseDeDonnéesLivresContext(
                 serviceProvider.GetRequiredService<DbContextOptions<BaseDeDonnéesLivresContext>>()))
             {
+                //Chercher livre desire
+                if (context.LivreDesire.Any())
+                {
+                    return;
+                }
+
+                context.LivreDesire.AddRange(
+                    new LivreDesire
+                    {
+                        titre = "Comment se faire des amis",
+                        anneePublication = DateTime.Parse("2019-2-25"),
+                        auteur = "Josue Khira"
+                    });
                 //Chercher un livre
                 if (context.Livre.Any())
                 {
@@ -46,6 +59,7 @@ namespace BaseDeDonnéesLivres.Models
 
                 context.SaveChanges();
 
+                
 
             }
         }

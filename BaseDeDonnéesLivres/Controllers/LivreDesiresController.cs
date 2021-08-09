@@ -10,22 +10,22 @@ using BaseDeDonnéesLivres.Models;
 
 namespace BaseDeDonnéesLivres.Controllers
 {
-    public class LivresController : Controller
+    public class LivreDesiresController : Controller
     {
         private readonly BaseDeDonnéesLivresContext _context;
 
-        public LivresController(BaseDeDonnéesLivresContext context)
+        public LivreDesiresController(BaseDeDonnéesLivresContext context)
         {
             _context = context;
         }
 
-        // GET: Livres
+        // GET: LivreDesires
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Livre.ToListAsync());
+            return View(await _context.LivreDesire.ToListAsync());
         }
 
-        // GET: Livres/Details/5
+        // GET: LivreDesires/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace BaseDeDonnéesLivres.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre
+            var livreDesire = await _context.LivreDesire
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (livre == null)
+            if (livreDesire == null)
             {
                 return NotFound();
             }
 
-            return View(livre);
+            return View(livreDesire);
         }
 
-        // GET: Livres/Create
+        // GET: LivreDesires/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Livres/Create
+        // POST: LivreDesires/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,titre,auteur,anneePublication,prix")] Livre livre)
+        public async Task<IActionResult> Create([Bind("Id,titre,anneePublication,auteur")] LivreDesire livreDesire)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(livre);
+                _context.Add(livreDesire);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(livre);
+            return View(livreDesire);
         }
 
-        // GET: Livres/Edit/5
+        // GET: LivreDesires/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace BaseDeDonnéesLivres.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre.FindAsync(id);
-            if (livre == null)
+            var livreDesire = await _context.LivreDesire.FindAsync(id);
+            if (livreDesire == null)
             {
                 return NotFound();
             }
-            return View(livre);
+            return View(livreDesire);
         }
 
-        // POST: Livres/Edit/5
+        // POST: LivreDesires/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,titre,auteur,anneePublication,prix,imageLivre")] Livre livre)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,titre,anneePublication,auteur")] LivreDesire livreDesire)
         {
-            if (id != livre.Id)
+            if (id != livreDesire.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace BaseDeDonnéesLivres.Controllers
             {
                 try
                 {
-                    _context.Update(livre);
+                    _context.Update(livreDesire);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LivreExists(livre.Id))
+                    if (!LivreDesireExists(livreDesire.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace BaseDeDonnéesLivres.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(livre);
+            return View(livreDesire);
         }
 
-        // GET: Livres/Delete/5
+        // GET: LivreDesires/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace BaseDeDonnéesLivres.Controllers
                 return NotFound();
             }
 
-            var livre = await _context.Livre
+            var livreDesire = await _context.LivreDesire
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (livre == null)
+            if (livreDesire == null)
             {
                 return NotFound();
             }
 
-            return View(livre);
+            return View(livreDesire);
         }
 
-        // POST: Livres/Delete/5
+        // POST: LivreDesires/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var livre = await _context.Livre.FindAsync(id);
-            _context.Livre.Remove(livre);
+            var livreDesire = await _context.LivreDesire.FindAsync(id);
+            _context.LivreDesire.Remove(livreDesire);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LivreExists(int id)
+        private bool LivreDesireExists(int id)
         {
-            return _context.Livre.Any(e => e.Id == id);
+            return _context.LivreDesire.Any(e => e.Id == id);
         }
     }
 }

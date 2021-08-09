@@ -15,5 +15,7 @@ namespace BaseDeDonnéesLivres.Data
         }
 
         public DbSet<BaseDeDonnéesLivres.Models.Livre> Livre { get; set; }
+
+        public DbSet<BaseDeDonnéesLivres.Models.LivreDesire> LivreDesire { get; set; }
     }
 }
