@@ -54,7 +54,7 @@ namespace BaseDeDonnéesLivres.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,titre,anneePublication,auteur")] LivreDesire livreDesire)
+        public async Task<IActionResult> Create([Bind("Id,titre,anneePublication,auteur,imageLivre")] LivreDesire livreDesire)
         {
             if (ModelState.IsValid)
             {

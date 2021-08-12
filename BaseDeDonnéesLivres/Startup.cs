@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BaseDeDonnéesLivres.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace BaseDeDonnéesLivres
 {
@@ -26,9 +27,12 @@ namespace BaseDeDonnéesLivres
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<BaseDeDonnéesLivresContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BaseDeDonnéesLivresContext")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BaseDeDonnéesLivresContext>(); //Ajout de la fonctionnalité d'enregistrement
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,11 +55,14 @@ namespace BaseDeDonnéesLivres
 
             app.UseAuthorization();
 
+            app.UseAuthentication();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

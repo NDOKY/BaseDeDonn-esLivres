@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.auteur)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imageLivre)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,10 +34,13 @@
                 @Html.DisplayFor(modelItem => item.titre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.anneePublication)
+                @Html.DisplayFor(modelItem => item.anneePublication.Year)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.auteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imageLivre.FileName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
