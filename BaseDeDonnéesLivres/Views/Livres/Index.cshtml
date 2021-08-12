@@ -48,7 +48,10 @@
                 @Html.DisplayFor(modelItem => item.prix)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.imageLivre.FileName)
+                <img src="~/images/@item.imageLivre"
+                     class="rounded-circle"
+                     height="40" width="40"
+                     asp-append-version="true" />
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

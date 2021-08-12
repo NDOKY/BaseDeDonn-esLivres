@@ -7,16 +7,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BaseDeDonnéesLivres.Data;
 using BaseDeDonnéesLivres.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BaseDeDonnéesLivres.Controllers
 {
     public class LivresController : Controller
     {
         private readonly BaseDeDonnéesLivresContext _context;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
         public LivresController(BaseDeDonnéesLivresContext context)
         {
             _context = context;
+        }
+
+        private string UploadedFile(Livre model)
+        {
+            string uniqueFileName = null;
+
+            if (model.imageLivre != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.imageLivre.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.imageLivre.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
         }
 
         // GET: Livres
