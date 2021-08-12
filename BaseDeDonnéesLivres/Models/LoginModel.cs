@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BaseDeDonnéesLivres.Models
 {
-    public class Login
+
+    public class LoginModel
     {
         [Required]
         [EmailAddress]
@@ -17,6 +18,7 @@ namespace BaseDeDonnéesLivres.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-
+        [Display(Name ="Remember Me")]
+        public bool RememberMe { get; set; }
     }
 }

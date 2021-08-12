@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BaseDeDonnéesLivres.Models
 {
-    public class Register: IdentityUser
+    public class RegisterModel: IdentityUser
     {
         //[PersonalData]
         //[Column(TypeName ="nvchar(100)")]

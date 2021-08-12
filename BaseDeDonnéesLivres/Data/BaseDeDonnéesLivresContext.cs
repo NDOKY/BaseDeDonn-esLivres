@@ -28,6 +28,7 @@ namespace BaseDeDonnéesLivres.Data
 
         public DbSet<BaseDeDonnéesLivres.Models.LivreDesire> LivreDesire { get; set; }
 
-        public DbSet<BaseDeDonnéesLivres.Models.Register> User { get; set; }
+       // public DbSet<BaseDeDonnéesLivres.Models.RegisterModel> User { get; set; }
+
     }
 }
